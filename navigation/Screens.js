@@ -11,10 +11,13 @@ import { Block } from "galio-framework";
 import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
 import Pro from "../screens/Pro";
-import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
+import PurchasesTable from "../screens/PurchasesTable";
+import InventoryTable from "../screens/InventoryTable";
+import SuppliersTable from "../screens/SuppliersTable";
+
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -75,48 +78,7 @@ function ArticlesStack(props) {
           cardStyle: { backgroundColor: "#F8F9FE" }
         }}
       />
-            <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
-
-function ProfileStack(props) {
-  return (
-    <Stack.Navigator initialRouteName="Profile" mode="card" headerMode="screen">
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              transparent
-              white
-              title="Profile"
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          cardStyle: { backgroundColor: "#FFFFFF" },
-          headerTransparent: true
-        }}
-      />
-            <Stack.Screen
+        <Stack.Screen
         name="Pro"
         component={Pro}
         options={{
@@ -177,6 +139,72 @@ function HomeStack(props) {
   );
 }
 
+function PurchasesTableStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Pedidos"
+        component={PurchasesTable}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Menu"
+              search
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" }
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function InventoryTableStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Estoque"
+        component={InventoryTable}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Menu"
+              search
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" }
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SuppliersTableStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Fornecedores"
+        component={SuppliersTable}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Menu"
+              search
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" }
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 export default function OnboardingStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="none">
@@ -224,10 +252,12 @@ function AppStack(props) {
       initialRouteName="Account"
     >
       <Drawer.Screen name="Home" component={HomeStack} />
-      <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Articles" component={ArticlesStack} />
+      <Drawer.Screen name="Pedidos" component={PurchasesTableStack} />
+      <Drawer.Screen name="Estoque" component={InventoryTableStack} />
+      <Drawer.Screen name="Fornecedores" component={SuppliersTableStack} />
     </Drawer.Navigator>
   );
 }

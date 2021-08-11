@@ -38,7 +38,7 @@ const SearchButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
       size={16}
-      family="Galio"
+      family="ArgonExtra"
       name="search-zoom-in"
       color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
@@ -88,8 +88,8 @@ class Header extends React.Component {
         ]);
       case 'Product':
         return ([
-          <SearchButton key='search-product' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-product' navigation={navigation} isWhite={white} />
+          <BellButton key='chat-home' navigation={navigation} isWhite={white} />,
+          <SearchButton key='search-product' navigation={navigation} isWhite={white} />
         ]);
       case 'Search':
         return ([
@@ -100,6 +100,11 @@ class Header extends React.Component {
         return ([
           <BellButton key='chat-search' navigation={navigation} isWhite={white} />,
           <BasketButton key='basket-search' navigation={navigation} isWhite={white} />
+        ]);
+      case 'Menu':
+        return ([
+          <BellButton key='chat-search' navigation={navigation} isWhite={white} />,
+          <BasketButton key='basket-home' navigation={navigation} isWhite={white} />
         ]);
       default:
         break;
@@ -112,7 +117,7 @@ class Header extends React.Component {
         right
         color="black"
         style={styles.search}
-        placeholder="What are you looking for?"
+        placeholder="O que você esta procurando?"
         placeholderTextColor={'#8898AA'}
         onFocus={() => navigation.navigate('Pro')}
         iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}

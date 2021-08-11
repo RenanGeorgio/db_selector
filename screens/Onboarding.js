@@ -40,7 +40,7 @@ class Onboarding extends React.Component {
                   </Text>
                 </Block>
                 <Block style={styles.subTitle}>
-                  <Text color="black" size={20}>
+                  <Text bold color="black" size={20}>
                     Registro de ativos.
                   </Text>
                 </Block>
@@ -50,7 +50,7 @@ class Onboarding extends React.Component {
                   style={styles.button}
                   color={argonTheme.COLORS.SECONDARY}
                   onPress={() => navigation.navigate("App")}
-                  textStyle={{ color: argonTheme.COLORS.BLACK }}
+                  textStyle={{color: argonTheme.COLORS.BLACK }}
                 >
                   Continuar
                 </Button>

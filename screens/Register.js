@@ -69,19 +69,12 @@ class Register extends React.Component {
                       />
                     </Block>
                     <Block middle>
-                      <Button
-                        style={{ width: 120 }}
-                        color="transparent"
-                        textStyle={{
-                          color: argonTheme.COLORS.BLACK,
-                          fontSize: 14
-                        }}
-                      >
+                      <Text size={14} color={argonTheme.COLORS.BLACK}>
                         Primeiro acesso
-                      </Button>
+                      </Text>
                     </Block>
                     <Block middle>
-                      <Button color="#black" style={styles.createButton} onPress={() => navigation.navigate("Home")}>
+                      <Button color="black" style={styles.createButton} onPress={() => navigation.navigate("Home")}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                           ENTRAR
                         </Text>
