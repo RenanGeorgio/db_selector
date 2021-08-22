@@ -1,10 +1,18 @@
 import React, {useState} from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { DataTable, Card } from 'react-native-paper';
-import { Block, theme } from 'galio-framework';
+import { DataTable, Card, Checkbox } from 'react-native-paper';
+import { Block, theme, Text } from 'galio-framework';
+
+import { Button, Icon, Input } from "../components";
+import { Images, argonTheme } from "../constants";
+
+const { width, height } = Dimensions.get("screen");
 
 const Fornecedores = () => {
+  const navigation = useNavigation();
+  
   const [sortAscending, setSortAscending] = useState(false);
   const [page, setPage] = useState(0);
   const [items] = useState([
@@ -69,9 +77,17 @@ const Fornecedores = () => {
       rate: 10,
     },
   ]);
-  const [numberOfItemsPerPageList] = useState([2, 3, 4, 200]);
+  const [checked, setChecked] = useState({});
+  const handleChange = (e, key, next_state) => {
+    setChecked({
+       ...checked,
+      [key]: next_state
+    })
+  };
+
+  const [numberOfItemsPerPageList] = useState([4, 8, 16, 32]);
   const [itemsPerPage, onItemsPerPageChange] = useState(
-    numberOfItemsPerPageList[0]
+    numberOfItemsPerPageList[1]
   );
   const sortedItems = items
     .slice()
@@ -87,36 +103,85 @@ const Fornecedores = () => {
     setPage(0);
   }, [itemsPerPage]);
 
+
   return (
     <PaperProvider>
+      <Block>
+        <Block row space="evenly">
+          <Block flex left>
+            <Button small center color="black" style={styles.optionsButton}>
+                <Text color="white">Adicionar</Text>
+            </Button>
+          </Block>
+          <Block flex center>
+            <Button small center color="black" style={styles.optionsButton}>
+                <Text color="white">Editar</Text>
+            </Button>
+          </Block>
+          <Block flex right>
+            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Delete")}>
+                <Text color="white">Deletar</Text>
+            </Button>
+          </Block>
+        </Block>
+      </Block>
+
+
       <Block contentContainerStyle={styles.content}>
-        <Card>
-          <DataTable>
-            <DataTable.Header>
+          <DataTable style={styles.frame}>
+            <DataTable.Header style={styles.card_type}>
               <DataTable.Title
                 sortDirection={sortAscending ? 'ascending' : 'descending'}
                 onPress={() => setSortAscending(!sortAscending)}
                 style={styles.first}
               >
-                Nome
+                <Text bold flex left>
+                 Nome
+                </Text>
               </DataTable.Title>
-              <DataTable.Title>Número de contato</DataTable.Title>
-              <DataTable.Title>e-mail</DataTable.Title>
-              <DataTable.Title>Outras formas de contato</DataTable.Title>
-              <DataTable.Title>Produtos</DataTable.Title>
-              <DataTable.Title>Localização</DataTable.Title>
-              <DataTable.Title numeric>Avaliação</DataTable.Title>
+              <DataTable.Title style={styles.labels1}>
+              <Text bold>
+                Telefone
+              </Text>
+              </DataTable.Title>
+              <DataTable.Title style={styles.labels2}>
+              <Text bold>
+                e-mail
+              </Text>
+              </DataTable.Title>
+              <DataTable.Title numeric style={styles.last}>
+              <Text bold>
+                Nota
+              </Text>
+              </DataTable.Title>
+              <DataTable.Title style={styles.checkbox_state}></DataTable.Title>
             </DataTable.Header>
 
             {sortedItems.slice(from, to).map((item) => (
               <DataTable.Row key={item.key}>
+                
                 <DataTable.Cell style={styles.first}>{item.name}</DataTable.Cell>
-                <DataTable.Cell>{item.phone_number}</DataTable.Cell>
-                <DataTable.Cell>{item.email}</DataTable.Cell>
-                <DataTable.Cell>{item.others_contact_info}</DataTable.Cell>
-                <DataTable.Cell>{item.list_products}</DataTable.Cell>
-                <DataTable.Cell>{item.locations}</DataTable.Cell>
-                <DataTable.Cell numeric>{item.rate}</DataTable.Cell>
+                <DataTable.Cell style={styles.labels1}>{item.phone_number}</DataTable.Cell>
+                <DataTable.Cell style={styles.labels2}>{item.email}</DataTable.Cell>
+                <DataTable.Cell numeric style={styles.last}>{item.rate}</DataTable.Cell>
+                <DataTable.Cell style={styles.checkbox_state_label}>
+                
+                  <Checkbox
+                    style={styles.checkbox_state}
+                    onPress={(e) => {
+                      let next_state;
+
+                      if((checked[item.key] == 'undefined')||(checked[item.key] == 'checked')){
+                        next_state = 'unchecked'
+                      }else{
+                        next_state = 'checked'
+                      }
+
+                      handleChange(e, item.key, next_state);
+                      }}
+                    status={checked[item.key]}
+                  />
+                </DataTable.Cell>
               </DataTable.Row>
             ))}
 
@@ -133,7 +198,6 @@ const Fornecedores = () => {
               selectPageDropdownLabel={'Items por pagina'}
             />
           </DataTable>
-        </Card>
       </Block>
     </PaperProvider>
   );
@@ -145,11 +209,59 @@ const styles = StyleSheet.create({
   content: {
     padding: 8,
   },
-  first: {
-    flex: 2,
-  },
   pagination: {
     marginTop:'10%',
+  },
+  card_type: {
+    backgroundColor: "#F5F5A4",
+    borderColor: 'gray',
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+  },
+  frame: {
+    backgroundColor: 'white',
+  },
+  optionsButton: {
+    width: width * 0.3,
+    height: 34,
+    paddingHorizontal: theme.SIZES.BASE,
+    paddingVertical: 10
+  },
+  first: {
+    flexDirection: "row",
+    width: '35%',
+    flex: 5,
+  },
+  checkbox_state_label: {
+    width: '5%',
+    flex: 2,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+  checkbox_state: {
+    width: '5%',
+    flex: 2,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+  last: {
+    width: '5%',
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  labels1: {
+    width: '25%',
+    flex: 4,
+  },
+  labels2: {
+    width: '25%',
+    flex: 3,
   },
 });
 

@@ -17,6 +17,7 @@ import Articles from "../screens/Articles";
 import PurchasesTable from "../screens/PurchasesTable";
 import InventoryTable from "../screens/InventoryTable";
 import SuppliersTable from "../screens/SuppliersTable";
+import DeleteService from "../screens/actions/DeleteService"; 
 
 // drawer
 import CustomDrawerContent from "./Menu";
@@ -258,6 +259,7 @@ function AppStack(props) {
       <Drawer.Screen name="Pedidos" component={PurchasesTableStack} />
       <Drawer.Screen name="Estoque" component={InventoryTableStack} />
       <Drawer.Screen name="Fornecedores" component={SuppliersTableStack} />
+      <Drawer.Screen name="Delete" component={DeleteService} />
     </Drawer.Navigator>
   );
 }

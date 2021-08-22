@@ -12,7 +12,6 @@ import { DrawerItem as DrawerCustomItem } from '../components';
 function CustomDrawerContent({ drawerPosition, navigation, profile, focused, state, ...rest }) {
   const screens = [
     "Home", 
-    "Account",
     "Elements",
     "Articles",
     "Pedidos",
