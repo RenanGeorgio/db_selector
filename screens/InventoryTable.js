@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { StyleSheet, Dimensions, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { DataTable, Card, Checkbox } from 'react-native-paper';
 import { Block, theme, Text } from 'galio-framework';
@@ -9,16 +10,18 @@ import { Images, argonTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
 
-const Fornecedores = () => {
+const Estoque = () => {
+  const navigation = useNavigation();
+
   const [sortAscending, setSortAscending] = useState(false);
   const [page, setPage] = useState(0);
   const [items] = useState([
     {
       key: 1,
       name: 'Cupcake',
-      phone_number: '3333333333',
-      email: 'contato1@gmail.com',
-      others_contact_info: 'outras',
+      price: 10,
+      quantity: 100,
+      supplier_id: 'outras',
       list_products: 'produto vagabundo',
       locations: 'localizao 1',
       rate: 4,
@@ -26,9 +29,9 @@ const Fornecedores = () => {
     {
       key: 2,
       name: 'Eclair',
-      phone_number: '33334543333',
-      email: 'contato2@gmail.com',
-      others_contact_info: 'outras2',
+      price: 30,
+      quantity: 5,
+      supplier_id: 'outras2',
       list_products: 'produto vagabundo2',
       locations: 'localizao 2',
       rate: 5,
@@ -36,9 +39,9 @@ const Fornecedores = () => {
     {
       key: 3,
       name: 'Frozen yogurt',
-      phone_number: '3333300033',
-      email: 'contato3@gmail.com',
-      others_contact_info: 'outras3',
+      price: 50,
+      quantity: 1,
+      supplier_id: 'outras3',
       list_products: 'produto vagabundo3',
       locations: 'localizao 3',
       rate: 1,
@@ -46,9 +49,9 @@ const Fornecedores = () => {
     {
       key: 4,
       name: 'Gingerbread',
-      phone_number: '333543333',
-      email: 'contato4@gmail.com',
-      others_contact_info: 'outras4',
+      price: 120,
+      quantity: 7,
+      supplier_id: 'outras4',
       list_products: 'produto vagabundo4',
       locations: 'localizao 4',
       rate: 9,
@@ -56,8 +59,8 @@ const Fornecedores = () => {
     {
       key: 5,
       name: 'Ice cream sandwich',
-      phone_number: '33336733',
-      email: 'contato5@gmail.com',
+      price: 43,
+      quantity: 21,
       others_contact_info: 'outras5',
       list_products: 'produto vagabundo5',
       locations: 'localizao 5',
@@ -66,9 +69,9 @@ const Fornecedores = () => {
     {
       key: 6,
       name: 'Jelly Bean',
-      phone_number: '333337633',
-      email: 'contato6@gmail.com',
-      others_contact_info: 'outras6',
+      price: 63,
+      quantity: 4,
+      supplier_id: 'outras6',
       list_products: 'produto vagabundo6',
       locations: 'localizao 6',
       rate: 10,
@@ -115,7 +118,7 @@ const Fornecedores = () => {
             </Button>
           </Block>
           <Block flex right>
-            <Button small center color="black" style={styles.optionsButton}>
+            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Delete")}>
                 <Text color="white">Deletar</Text>
             </Button>
           </Block>
@@ -137,17 +140,17 @@ const Fornecedores = () => {
               </DataTable.Title>
               <DataTable.Title style={styles.labels1}>
               <Text bold>
-                Telefone
+                Valor (unit)
               </Text>
               </DataTable.Title>
               <DataTable.Title style={styles.labels2}>
               <Text bold>
-                e-mail
+                Quantidade
               </Text>
               </DataTable.Title>
-              <DataTable.Title numeric style={styles.last}>
+              <DataTable.Title style={styles.last}>
               <Text bold>
-                Nota
+                Fornecedor
               </Text>
               </DataTable.Title>
               <DataTable.Title style={styles.checkbox_state}></DataTable.Title>
@@ -157,9 +160,9 @@ const Fornecedores = () => {
               <DataTable.Row key={item.key}>
                 
                 <DataTable.Cell style={styles.first}>{item.name}</DataTable.Cell>
-                <DataTable.Cell style={styles.labels1}>{item.phone_number}</DataTable.Cell>
-                <DataTable.Cell style={styles.labels2}>{item.email}</DataTable.Cell>
-                <DataTable.Cell numeric style={styles.last}>{item.rate}</DataTable.Cell>
+                <DataTable.Cell numeric style={styles.labels1}>{item.price}</DataTable.Cell>
+                <DataTable.Cell numeric style={styles.labels2}>{item.quantity}</DataTable.Cell>
+                <DataTable.Cell style={styles.last}>{item.supplier_id}</DataTable.Cell>
                 <DataTable.Cell style={styles.checkbox_state_label}>
                 
                   <Checkbox
@@ -199,7 +202,7 @@ const Fornecedores = () => {
   );
 };
 
-Fornecedores.title = 'Fornecedores';
+Estoque.title = 'Estoque';
 
 const styles = StyleSheet.create({
   content: {
@@ -230,35 +233,39 @@ const styles = StyleSheet.create({
   },
   first: {
     flexDirection: "row",
-    width: '35%',
+    width: '20%',
     flex: 5,
   },
   checkbox_state_label: {
-    width: '5%',
+    width: '3%',
     flex: 2,
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
   },
   checkbox_state: {
-    width: '5%',
-    flex: 2,
+    width: '3%',
+    flex: 1,
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
   },
   last: {
-    width: '5%',
-    flex: 2,
+    width: '20%',
+    flex: 3,
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'flex-end',
   },
   labels1: {
-    width: '25%',
+    width: '10%',
     flex: 4,
+    alignItems: 'flex-start',
+    justifyContent: 'space-evenly',
   },
   labels2: {
-    width: '25%',
-    flex: 3,
+    width: '10%',
+    flex: 4,
+    alignItems: 'flex-start',
+    justifyContent: 'space-evenly',
   },
 });
 
-export default Fornecedores;
+export default Estoque;

@@ -46,7 +46,7 @@ class DeleteService extends React.Component {
                         </Button>
                         </Block>
                         <Block flex right>
-                        <Button color="black" style={styles.createButton} onPress={() => navigation.navigate("Fornecedores")}>
+                        <Button color="black" style={styles.createButton} onPress={() => navigation.goBack()}>
                             <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                             VOLTAR
                             </Text>

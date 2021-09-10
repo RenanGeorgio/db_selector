@@ -109,7 +109,7 @@ const Fornecedores = () => {
       <Block>
         <Block row space="evenly">
           <Block flex left>
-            <Button small center color="black" style={styles.optionsButton}>
+            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Adicionar")}>
                 <Text color="white">Adicionar</Text>
             </Button>
           </Block>
