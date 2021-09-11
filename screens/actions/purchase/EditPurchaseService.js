@@ -22,7 +22,7 @@ import { API_PLACES_KEY } from '../../../keys';
 
 const { width, height } = Dimensions.get("screen");
 
-const EdityPurchaseEntryService = () => {
+const EditPurchaseEntryService = () => {
   const navigation = useNavigation();
   return (
       <Block flex middle>
@@ -217,4 +217,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EdityPurchaseEntryService;
+export default EditPurchaseEntryService;

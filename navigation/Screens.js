@@ -18,7 +18,13 @@ import PurchasesTable from "../screens/PurchasesTable";
 import InventoryTable from "../screens/InventoryTable";
 import SuppliersTable from "../screens/SuppliersTable";
 import DeleteService from "../screens/actions/DeleteService";
-import CreateEntryService from "../screens/actions/CreateService"; 
+
+import CreateInventoryEntryService from "../screens/actions/inventory/CreateInventoryService"; 
+import EditInventoryEntryService from "../screens/actions/inventory/EditInventoryService";
+import CreatePurchaseEntryService from "../screens/actions/purchase/CreatePurchaseService"; 
+import EditPurchaseEntryService from "../screens/actions/purchase/EditPurchaseService"; 
+import CreateSupplyEntryService from "../screens/actions/supplier/CreateSupplyService"; 
+import EditSupplyEntryService from "../screens/actions/supplier/EditSupplyService"; 
 
 
 // drawer
@@ -262,7 +268,12 @@ function AppStack(props) {
       <Drawer.Screen name="Estoque" component={InventoryTableStack} />
       <Drawer.Screen name="Fornecedores" component={SuppliersTableStack} />
       <Drawer.Screen name="Delete" component={DeleteService} />
-      <Drawer.Screen name="Adicionar" component={CreateEntryService} />
+      <Drawer.Screen name="Adicionar produto ao estoque" component={CreateInventoryEntryService} />
+      <Drawer.Screen name="Editar produto no estoque" component={EditInventoryEntryService} />
+      <Drawer.Screen name="Adicionar pedido" component={CreatePurchaseEntryService} />
+      <Drawer.Screen name="Editar pedido" component={EditPurchaseEntryService} />
+      <Drawer.Screen name="Adicionar fornecedor" component={CreateSupplyEntryService} />
+      <Drawer.Screen name="Editar fornecedor" component={EditSupplyEntryService} />
     </Drawer.Navigator>
   );
 }

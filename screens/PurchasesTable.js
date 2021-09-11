@@ -106,14 +106,17 @@ const Pedidos = () => {
   return (
     <PaperProvider>
       <Block>
+        <Block>
+          <Text flex style={{paddingLeft: 10, paddingTop: 5, fontSize: 18, fontWeight: 'bold'}} color={argonTheme.COLORS.BLACK}>Pedidos</Text>
+        </Block>
         <Block row space="evenly">
           <Block flex left>
-            <Button small center color="black" style={styles.optionsButton}>
+            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Adicionar pedido")}>
                 <Text color="white">Adicionar</Text>
             </Button>
           </Block>
           <Block flex center>
-            <Button small center color="black" style={styles.optionsButton}>
+            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Editar pedido")}>
                 <Text color="white">Editar</Text>
             </Button>
           </Block>

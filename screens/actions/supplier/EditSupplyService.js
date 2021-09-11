@@ -13,16 +13,16 @@ import { useNavigation } from '@react-navigation/native';
 
 import { Block, Text, theme } from "galio-framework";
 
-import { Button, Icon, Input } from "../../components";
-import { Images, argonTheme } from "../../constants";
+import { Button, Icon, Input } from "../../../components";
+import { Images, argonTheme } from "../../../constants";
 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { Input as ComboInput } from 'react-native-elements';
-import { API_PLACES_KEY } from '../../keys';
+import { API_PLACES_KEY } from '../../../keys';
 
 const { width, height } = Dimensions.get("screen");
 
-const EditySypplyEntryService = () => {
+const EditSupplyEntryService = () => {
   const navigation = useNavigation();
   return (
       <Block flex middle>
@@ -217,4 +217,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditySypplyEntryService;
+export default EditSupplyEntryService;
