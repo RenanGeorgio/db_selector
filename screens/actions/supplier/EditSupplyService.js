@@ -27,7 +27,7 @@ const EditSupplyEntryService = () => {
   return (
       <Block flex middle>
         <View style={styles.headerbox}>
-            <Text style={styles.headerTitle}>Novo fornecedor</Text>
+            <Text style={styles.headerTitle}>Editar fornecedor</Text>
         </View>
         <Block safe flex middle>
             <Block flex center style={styles.registerContainer}>
@@ -162,7 +162,7 @@ const EditSupplyEntryService = () => {
                     <TouchableHighlight
                         onPress={() => onOpenCreator()}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                            CRIAR
+                            ATUALIZAR
                         </Text>
                     </TouchableHighlight>
                     </Button>

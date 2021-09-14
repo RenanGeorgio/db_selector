@@ -27,8 +27,8 @@ class Register extends React.Component {
             <Block style={styles.registerContainer}>
               <Block flex>
                 <Block flex={0.17} middle>
-                  <Text color="#8898AA" size={12}>
-                    Sing-in
+                  <Text color={argonTheme.COLORS.BLACK} size={12}>
+                    Primeiro acesso
                   </Text>
                 </Block>
                 <Block flex center>
@@ -70,11 +70,11 @@ class Register extends React.Component {
                     </Block>
                     <Block middle>
                       <Text size={14} color={argonTheme.COLORS.BLACK}>
-                        Primeiro acesso
+                        Esqueci a senha
                       </Text>
                     </Block>
                     <Block middle>
-                      <Button color="black" style={styles.createButton} onPress={() => navigation.navigate("Home")}>
+                      <Button color="black" disabled={false} style={styles.createButton} onPress={() => navigation.navigate("Home")}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                           ENTRAR
                         </Text>

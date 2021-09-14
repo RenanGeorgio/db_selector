@@ -12,6 +12,8 @@ const { width, height } = Dimensions.get("screen");
 
 const Fornecedores = () => {
   const navigation = useNavigation();
+
+  const [buttomState, setButtomState] = useState(true);
   
   const [sortAscending, setSortAscending] = useState(false);
   const [page, setPage] = useState(0);
@@ -80,7 +82,6 @@ const Fornecedores = () => {
   const [checked, setChecked] = useState({});
   const handleChange = (e, key, next_state) => {
     setChecked({
-       ...checked,
       [key]: next_state
     })
   };
@@ -112,17 +113,17 @@ const Fornecedores = () => {
         </Block>
         <Block row space="evenly">
           <Block flex left>
-            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Adicionar fornecedor")}>
+            <Button small center disabled={false} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Adicionar fornecedor")}>
                 <Text color="white">Adicionar</Text>
             </Button>
           </Block>
           <Block flex center>
-            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Editar fornecedor")}>
+            <Button small center disabled={buttomState} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Editar fornecedor", checked)}>
                 <Text color="white">Editar</Text>
             </Button>
           </Block>
           <Block flex right>
-            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Delete")}>
+            <Button small center disabled={buttomState} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Delete", checked)}>
                 <Text color="white">Deletar</Text>
             </Button>
           </Block>
@@ -176,11 +177,16 @@ const Fornecedores = () => {
 
                       if((checked[item.key] == 'undefined')||(checked[item.key] == 'checked')){
                         next_state = 'unchecked'
+                        setButtomState(true)
                       }else{
                         next_state = 'checked'
+                        setButtomState(false)
                       }
 
                       handleChange(e, item.key, next_state);
+                      console.log(checked)
+                      console.log(buttomState)
+
                       }}
                     status={checked[item.key]}
                   />

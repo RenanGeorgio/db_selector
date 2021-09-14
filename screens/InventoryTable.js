@@ -13,6 +13,8 @@ const { width, height } = Dimensions.get("screen");
 const Estoque = () => {
   const navigation = useNavigation();
 
+  const [buttomState, setButtomState] = useState(true);
+
   const [sortAscending, setSortAscending] = useState(false);
   const [page, setPage] = useState(0);
   const [items] = useState([
@@ -111,17 +113,17 @@ const Estoque = () => {
         </Block>
         <Block row space="evenly">
           <Block flex left>
-            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Adicionar produto ao estoque")}>
+            <Button small center disabled={false} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Adicionar produto ao estoque")}>
                 <Text color="white">Adicionar</Text>
             </Button>
           </Block>
           <Block flex center>
-            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Editar produto no estoque")}>
+            <Button small center disabled={buttomState} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Editar produto no estoque")}>
                 <Text color="white">Editar</Text>
             </Button>
           </Block>
           <Block flex right>
-            <Button small center color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Delete")}>
+            <Button small center disabled={buttomState} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Delete")}>
                 <Text color="white">Deletar</Text>
             </Button>
           </Block>
@@ -175,8 +177,10 @@ const Estoque = () => {
 
                       if((checked[item.key] == 'undefined')||(checked[item.key] == 'checked')){
                         next_state = 'unchecked'
+                        setButtomState(true)
                       }else{
                         next_state = 'checked'
+                        setButtomState(false)
                       }
 
                       handleChange(e, item.key, next_state);
