@@ -12,8 +12,6 @@ import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
 import Pro from "../screens/Pro";
 import Register from "../screens/Register";
-import Elements from "../screens/Elements";
-import Articles from "../screens/Articles";
 import PurchasesTable from "../screens/PurchasesTable";
 import InventoryTable from "../screens/InventoryTable";
 import SuppliersTable from "../screens/SuppliersTable";
@@ -39,74 +37,6 @@ const { width } = Dimensions.get("screen");
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-
-function ElementsStack(props) {
-  return (
-    <Stack.Navigator mode="card" headerMode="screen">
-      <Stack.Screen
-        name="Elements"
-        component={Elements}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Elements" navigation={navigation} scene={scene} />
-          ),
-          cardStyle: { backgroundColor: "#F8F9FE" }
-        }}
-      />
-            <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
-
-function ArticlesStack(props) {
-  return (
-    <Stack.Navigator mode="card" headerMode="screen">
-      <Stack.Screen
-        name="Articles"
-        component={Articles}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Articles" navigation={navigation} scene={scene} />
-          ),
-          cardStyle: { backgroundColor: "#F8F9FE" }
-        }}
-      />
-        <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
 
 function HomeStack(props) {
   return (
@@ -262,8 +192,6 @@ function AppStack(props) {
     >
       <Drawer.Screen name="Home" component={HomeStack} />
       <Drawer.Screen name="Account" component={Register} />
-      <Drawer.Screen name="Elements" component={ElementsStack} />
-      <Drawer.Screen name="Articles" component={ArticlesStack} />
       <Drawer.Screen name="Pedidos" component={PurchasesTableStack} />
       <Drawer.Screen name="Estoque" component={InventoryTableStack} />
       <Drawer.Screen name="Fornecedores" component={SuppliersTableStack} />

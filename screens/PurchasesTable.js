@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Dimensions, View } from 'react-native';
+import { StyleSheet, Dimensions, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { DataTable, Card, Checkbox } from 'react-native-paper';
@@ -80,12 +80,16 @@ const Pedidos = () => {
     },
   ]);
   const [checked, setChecked] = useState({});
+
   const handleChange = (e, key, next_state) => {
     setChecked({
-       ...checked,
       [key]: next_state
     })
   };
+
+   const handleClearState = () => {
+    setChecked({})
+  }
 
   const [numberOfItemsPerPageList] = useState([4, 8, 16, 32]);
   const [itemsPerPage, onItemsPerPageChange] = useState(
@@ -105,6 +109,13 @@ const Pedidos = () => {
     setPage(0);
   }, [itemsPerPage]);
 
+   React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      handleClearState();
+    });
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <PaperProvider>
       <Block>
@@ -118,12 +129,12 @@ const Pedidos = () => {
             </Button>
           </Block>
           <Block flex center>
-            <Button small center disabled={buttomState} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Editar pedido")}>
+            <Button small center disabled={buttomState} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Editar pedido", checked)}>
                 <Text color="white">Editar</Text>
             </Button>
           </Block>
           <Block flex right>
-            <Button small center disabled={buttomState} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Delete")}>
+            <Button small center disabled={buttomState} color="black" style={styles.optionsButton} onPress={() => navigation.navigate("Delete", checked)}>
                 <Text color="white">Deletar</Text>
             </Button>
           </Block>

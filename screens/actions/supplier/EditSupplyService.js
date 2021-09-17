@@ -22,8 +22,15 @@ import { API_PLACES_KEY } from '../../../keys';
 
 const { width, height } = Dimensions.get("screen");
 
-const EditSupplyEntryService = () => {
+const EditSupplyEntryService = (props) => {
   const navigation = useNavigation();
+
+  console.log(props)
+  var paramObj = JSON.stringify(props.route.params);
+
+  const ID = paramObj.split('"')[1];
+  console.log(ID)
+
   return (
       <Block flex middle>
         <View style={styles.headerbox}>
@@ -150,7 +157,12 @@ const EditSupplyEntryService = () => {
                   <Block flex left style={{marginRight:10}}>
                     <Button color="black" style={styles.createButton}>
                     <TouchableHighlight
-                        onPress={() => navigation.goBack()}>
+                        onPress={() => {
+                          props.route.params = {}
+                          navigation.goBack() 
+                          console.log(props.route.params)
+                          }
+                        }>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                             CANCELAR
                         </Text>

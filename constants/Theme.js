@@ -8,12 +8,11 @@ export default {
     ERROR: '#F5365C',
     SUCCESS: '#2DCE89',
     WARNING: '#FB6340',
-    /*not yet changed */
     MUTED: '#ADB5BD',
     INPUT: '#DCDCDC',
     INPUT_SUCCESS: '#7BDEB2',
     INPUT_ERROR: '#FCB3A4',
-    ACTIVE: '#5E72E4', //same as primary
+    ACTIVE: '#e6da00',
     BUTTON_COLOR: '#9C26B0', //wtf
     PLACEHOLDER: '#9FA5AA',
     SWITCH_ON: '#5E72E4',

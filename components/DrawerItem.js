@@ -16,34 +16,7 @@ class DrawerItem extends React.Component {
             name="shop"
             family="ArgonExtra"
             size={14}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
-          />
-        );
-      case "Elements":
-        return (
-          <Icon
-            name="map-big"
-            family="ArgonExtra"
-            size={14}
-            color={focused ? "white" : argonTheme.COLORS.ERROR}
-          />
-        );
-      case "Articles":
-        return (
-          <Icon
-            name="spaceship"
-            family="ArgonExtra"
-            size={14}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
-          />
-        );
-      case "Profile":
-        return (
-          <Icon
-            name="chart-pie-35"
-            family="ArgonExtra"
-            size={14}
-            color={focused ? "white" : argonTheme.COLORS.WARNING}
+            color={focused ? "white" : argonTheme.COLORS.ACTIVE}
           />
         );
       case "Account":
@@ -61,7 +34,7 @@ class DrawerItem extends React.Component {
             name="basket"
             family="ArgonExtra"
             size={14}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+            color={focused ? "white" : argonTheme.COLORS.ACTIVE}
           />
         );
       case "Estoque":
@@ -70,7 +43,7 @@ class DrawerItem extends React.Component {
             name="shop"
             family="ArgonExtra"
             size={14}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+            color={focused ? "white" : argonTheme.COLORS.ACTIVE}
           />
         );
       case "Fornecedores":
@@ -79,18 +52,16 @@ class DrawerItem extends React.Component {
             name="ic_mail_24px"
             family="ArgonExtra"
             size={14}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+            color={focused ? "white" : argonTheme.COLORS.ACTIVE}
           />
         );
-      case "Getting Started":
-        return (<Icon
-          name="spaceship"
+      case "Log out":
+        return <Icon 
+        name="spaceship"
           family="ArgonExtra"
           size={14}
           color={focused ? "white" : "rgba(0,0,0,0.5)"}
-        />);
-      case "Log out":
-        return <Icon />;
+          />;
       default:
         return null;
     }
@@ -146,8 +117,8 @@ const styles = StyleSheet.create({
   shadow: {
     shadowColor: theme.COLORS.BLACK,
     shadowOffset: {
-      width: 0,
-      height: 2
+      width: 1,
+      height: 3
     },
     shadowRadius: 8,
     shadowOpacity: 0.1
