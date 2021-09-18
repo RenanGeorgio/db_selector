@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Dimensions,
   KeyboardAvoidingView,
-  TextInput,
   View,
   Platform,
   TouchableHighlight,
@@ -16,6 +15,8 @@ import { Block, Text, theme } from "galio-framework";
 import { Button, Icon, Input } from "../../../components";
 import { Images, argonTheme } from "../../../constants";
 
+import { saveProducts } from "../../../data/controllers/productsController";
+
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { Input as ComboInput } from 'react-native-elements';
 import { API_PLACES_KEY } from '../../../keys';
@@ -24,6 +25,35 @@ const { width, height } = Dimensions.get("screen");
 
 const CreateInventoryEntryService = () => {
   const navigation = useNavigation();
+
+  const [isSaving, setIsSaving] = useState(false);
+
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
+  const [price, setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [supplier, setSupplier] = useState('');
+  const [location, setLocation] = useState('');
+  const [buyat, setBuyat] = useState('');
+  const [supplierid, setSupplierid] = useState('');
+
+  const handleSavePress = async () => {
+    setIsSaving(true);
+    await saveWeight({name, category, price, quantity, supplier, location, buyat, supplierid});
+    
+    setWeight('');
+    setNote('');
+    setName('');
+    setCategory('');
+    setPrice('');
+    setQuantity('');
+    setSupplier('');
+    setLocation('');
+    setBuyat('');
+    setSupplierid('');
+
+    setIsSaving(false);
+  };
   return (
       <Block flex middle>
         <View style={styles.headerbox}>
@@ -48,13 +78,16 @@ const CreateInventoryEntryService = () => {
                         style={styles.inputIcons}
                         />
                     }
+                    onChangeText={(text) => setName(text)}
+                    value={name}
                     />
                 </Block>
                 <Block row space='evenly' width={width * 0.8}>
                       <Input
                       style={{flex: 0, paddingRight: width * 0.1, flexDirection: 'row', width: width * 0.39}}
+                      keyboardType="decimal-pad"
                       borderless
-                      placeholder="Telefone"
+                      placeholder="Preço unit."
                       iconContent={
                           <Icon
                           size={16}
@@ -64,11 +97,14 @@ const CreateInventoryEntryService = () => {
                           style={styles.inputIcons}
                           />
                       }
+                      onChangeText={(text) => setPrice(text)}
+                      value={price}
                       />
                       <Input
                       style={{flex: 0, paddingLeft: width * 0.1, flexDirection: 'row', width: width * 0.39}}
+                      keyboardType="decimal-pad"
                       borderless
-                      placeholder="email"
+                      placeholder="Quantidade"
                       iconContent={
                           <Icon
                           size={16}
@@ -78,12 +114,14 @@ const CreateInventoryEntryService = () => {
                           style={styles.inputIcons}
                           />
                       }
+                      onChangeText={(text) => setQuantity(text)}
+                      value={quantity}
                       />
                 </Block>
                 <Block width={width * 0.8}>
                   <Input
                   borderless
-                  placeholder="Outras informações de contato"
+                  placeholder="Fornecedor"
                   iconContent={
                       <Icon
                       size={16}
@@ -93,6 +131,8 @@ const CreateInventoryEntryService = () => {
                       style={styles.inputIcons}
                       />
                   }
+                  onChangeText={(text) => setSupplier(text)}
+                  value={supplier}
                   />
                 </Block>
                 <Block middle style={{paddingTop:10}}>
@@ -139,7 +179,10 @@ const CreateInventoryEntryService = () => {
                         flexDirection: 'row',
                       },
                     }}
-                    onPress={(data, details) => console.log(data, details)} 
+
+                    onPress={(data, details) => console.log(data, details)}
+                    onChangeText={(text) => setLocation(text)}
+                    
                     textInputProps={{
                       InputComp: ComboInput,
                       errorStyle: { color: 'red' },
@@ -160,7 +203,7 @@ const CreateInventoryEntryService = () => {
                   <Block flex right style={{marginLeft:10}}>
                     <Button color="black" style={styles.createButton}>
                     <TouchableHighlight
-                        onPress={() => onOpenCreator()}>
+                        onPress={() => handleSavePress()}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
                             CRIAR
                         </Text>
