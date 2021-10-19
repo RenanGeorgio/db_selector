@@ -3,7 +3,7 @@ import { schemaMigrations, createTable } from '@nozbe/watermelondb/Schema/migrat
 export default schemaMigrations({
   migrations: [
     {
-      toVersion: 1,
+      toVersion: 2,
       steps: [
         createTable({
           name: 'orders',
@@ -43,7 +43,7 @@ export default schemaMigrations({
             { name: 'phone_number', type: 'string', isOptional: true },
             { name: 'email', type: 'string', isOptional: true },
             { name: 'others_contact_info', type: 'string', isOptional: true },
-            { name: 'list_products', type: 'string', isOptional: true }
+            { name: 'list_products', type: 'string', isOptional: true },
             { name: 'rate', type: 'number', isOptional: true },
             { name: 'locations', type: 'string', isOptional: true },
             { name: 'created_at', type: 'number' },

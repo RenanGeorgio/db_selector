@@ -15,7 +15,7 @@ import { Block, Text, theme } from "galio-framework";
 import { Button, Icon, Input } from "../../../components";
 import { Images, argonTheme } from "../../../constants";
 
-import { saveProducts } from "../../../data/controllers/productsController";
+//import { saveProducts } from "../../../data/controllers/productsController";
 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { Input as ComboInput } from 'react-native-elements';

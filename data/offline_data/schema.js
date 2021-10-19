@@ -41,7 +41,7 @@ export const mySchema = appSchema({
         { name: 'phone_number', type: 'string', isOptional: true },
         { name: 'email', type: 'string', isOptional: true },
         { name: 'others_contact_info', type: 'string', isOptional: true },
-        { name: 'list_products', type: 'string', isOptional: true }
+        { name: 'list_products', type: 'string', isOptional: true },
         { name: 'rate', type: 'number', isOptional: true },
         { name: 'locations', type: 'string', isOptional: true },
         { name: 'created_at', type: 'number' },

@@ -1,5 +1,5 @@
 import { Model } from '@nozbe/watermelondb';
-import { field, relation, children, action } from '@nozbe/watermelondb/decorators';
+import { field, relation, children, action, date, json } from '@nozbe/watermelondb/decorators';
 
 export class Supplier extends Model {
   static table = 'suppliers';
